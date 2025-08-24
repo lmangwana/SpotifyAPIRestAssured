@@ -1,6 +1,6 @@
 # Spotify API — Rest Assured + TestNG
 
-REST Assured + TestNG automation for the Spotify Web API.  
+REST Assured + TestNG automation for the [Spotify Web API](https://developer.spotify.com/documentation/web-api/)..  
 Read-only tests run with **client credentials**; user-scoped playlist tests run only when a **user token** is provided.  
 Config is hybrid: **System props > Env vars > `config.properties` > defaults**.
 
@@ -8,17 +8,22 @@ Config is hybrid: **System props > Env vars > `config.properties` > defaults**.
 
 ## Project layout
 
+<pre>
+pom.xml
+config.properties      # ignored in git, stores local client_id/client_secret
+
 src/test/java/
-base/
-Config.java          # hybrid config loader (env/-D/config.properties)
-ApiBase.java         # common RequestSpecs (app vs user)
-client/
-SpotifyAuthClient.java  # OAuth: client_credentials → app token
-util/
-TokenManager.java    # caches app token until near-expiry
-tests/
-ReadOnlySpotifyIT.java  # search → artist → top-tracks → tracks
-UserPlaylistIT.java     # /me → create → add → update → get → remove
+├── base/
+│   ├── Config.java              # hybrid config loader (env/-D/config.properties)
+│   └── ApiBase.java             # common RequestSpecs (app vs user)
+├── client/
+│   └── SpotifyAuthClient.java   # OAuth: client_credentials → app token
+├── util/
+│   └── TokenManager.java        # caches app token until near-expiry
+└── tests/
+    ├── ReadOnlySpotifyIT.java   # search → artist → top-tracks → tracks
+    └── UserPlaylistIT.java      # /me → create → add → update → get → remove
+</pre>
 
 ---
 
